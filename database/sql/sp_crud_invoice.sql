@@ -1,4 +1,4 @@
-DELIMITER $$
+
 CREATE PROCEDURE sp_create_invoice(
     IN p_payment_id BIGINT,
     IN p_total DECIMAL(10,2)
@@ -14,10 +14,9 @@ BEGIN
         VALUES (p_payment_id, p_total, NOW(), NOW());
     COMMIT;
     SELECT 'OK' AS status, 'Factura creada correctamente' AS message;
-END$$
-DELIMITER ;
+END;
 
-DELIMITER $$
+
 CREATE PROCEDURE sp_delete_invoice(IN p_id BIGINT)
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -29,5 +28,4 @@ BEGIN
         DELETE FROM invoices WHERE id = p_id;
     COMMIT;
     SELECT 'OK' AS status, 'Factura eliminada correctamente' AS message;
-END$$
-DELIMITER ;
+END;

@@ -1,4 +1,4 @@
-DELIMITER $$
+
 CREATE PROCEDURE sp_create_reservation(
     IN p_user_id BIGINT,
     IN p_room_id BIGINT,
@@ -16,10 +16,9 @@ BEGIN
         VALUES (p_user_id, p_room_id, p_start_date, p_end_date, NOW(), NOW());
     COMMIT;
     SELECT 'OK' AS status, 'Reserva creada correctamente' AS message;
-END$$
-DELIMITER ;
+END;
 
-DELIMITER $$
+
 CREATE PROCEDURE sp_update_reservation(
     IN p_id BIGINT,
     IN p_start_date DATE,
@@ -37,10 +36,9 @@ BEGIN
         WHERE id = p_id;
     COMMIT;
     SELECT 'OK' AS status, 'Reserva actualizada correctamente' AS message;
-END$$
-DELIMITER ;
+END;
 
-DELIMITER $$
+
 CREATE PROCEDURE sp_delete_reservation(IN p_id BIGINT)
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -52,5 +50,4 @@ BEGIN
         DELETE FROM reservations WHERE id = p_id;
     COMMIT;
     SELECT 'OK' AS status, 'Reserva eliminada correctamente' AS message;
-END$$
-DELIMITER ;
+END;

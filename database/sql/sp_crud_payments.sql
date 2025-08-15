@@ -1,4 +1,4 @@
-DELIMITER $$
+
 CREATE PROCEDURE sp_create_payment(
     IN p_reservation_id BIGINT,
     IN p_amount DECIMAL(10,2),
@@ -15,10 +15,9 @@ BEGIN
         VALUES (p_reservation_id, p_amount, p_method, NOW(), NOW());
     COMMIT;
     SELECT 'OK' AS status, 'Pago registrado correctamente' AS message;
-END$$
-DELIMITER ;
+END;
 
-DELIMITER $$
+
 CREATE PROCEDURE sp_delete_payment(IN p_id BIGINT)
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -30,5 +29,4 @@ BEGIN
         DELETE FROM payments WHERE id = p_id;
     COMMIT;
     SELECT 'OK' AS status, 'Pago eliminado correctamente' AS message;
-END$$
-DELIMITER ;
+END;

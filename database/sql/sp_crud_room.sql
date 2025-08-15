@@ -1,5 +1,5 @@
 -- CREAR HABITACIÓN
-DELIMITER $$
+
 CREATE PROCEDURE sp_create_room(
     IN p_name VARCHAR(255),
     IN p_description TEXT,
@@ -16,11 +16,10 @@ BEGIN
         VALUES (p_name, p_description, p_price, NOW(), NOW());
     COMMIT;
     SELECT 'OK' AS status, 'Habitación creada correctamente' AS message;
-END$$
-DELIMITER ;
+END;
 
 -- ACTUALIZAR HABITACIÓN
-DELIMITER $$
+
 CREATE PROCEDURE sp_update_room(
     IN p_id BIGINT,
     IN p_name VARCHAR(255),
@@ -39,11 +38,10 @@ BEGIN
         WHERE id = p_id;
     COMMIT;
     SELECT 'OK' AS status, 'Habitación actualizada correctamente' AS message;
-END$$
-DELIMITER ;
+END;
 
 -- ELIMINAR HABITACIÓN
-DELIMITER $$
+
 CREATE PROCEDURE sp_delete_room(IN p_id BIGINT)
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -55,5 +53,4 @@ BEGIN
         DELETE FROM rooms WHERE id = p_id;
     COMMIT;
     SELECT 'OK' AS status, 'Habitación eliminada correctamente' AS message;
-END$$
-DELIMITER ;
+END;
