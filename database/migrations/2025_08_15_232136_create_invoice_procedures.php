@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
 
 return new class extends Migration
 {
@@ -11,10 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invoice_procedures', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+           DB::unprepared(file_get_contents(database_path('sql/sp_crud_invoice.sql')));
     }
 
     /**
@@ -22,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invoice_procedures');
+         DB::unprepared("
+            DROP PROCEDURE IF EXISTS sp_create_invoice;
+            DROP PROCEDURE IF EXISTS sp_delete_invoice;
+         ");
     }
 };
