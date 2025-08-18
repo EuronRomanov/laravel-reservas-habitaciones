@@ -13,6 +13,8 @@ class RoomController extends Controller
     public function index()
     {
         //
+        $rooms = DB::select("SELECT * FROM rooms");
+        return response()->json($rooms);
     }
 
     /**
