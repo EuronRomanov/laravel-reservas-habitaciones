@@ -11,7 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-       DB::unprepared(file_get_contents(database_path('sql/sp_crud_payments.sql')));
+       //DB::unprepared(file_get_contents(database_path('sql/sp_crud_payments.sql')));
+        DB::unprepared(file_get_contents(database_path('sql/sp_create_payment.sql')));
+    DB::unprepared(file_get_contents(database_path('sql/sp_update_payment.sql')));
+    DB::unprepared(file_get_contents(database_path('sql/sp_delete_payment.sql')));
     }
 
     /**
@@ -21,6 +24,7 @@ return new class extends Migration
     {
          DB::unprepared("
             DROP PROCEDURE IF EXISTS sp_create_payment;
+             DROP PROCEDURE IF EXISTS sp_update_payment;
             DROP PROCEDURE IF EXISTS sp_delete_payment;
          ");
     }

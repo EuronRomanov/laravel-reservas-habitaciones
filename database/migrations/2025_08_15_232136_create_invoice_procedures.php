@@ -13,7 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-           DB::unprepared(file_get_contents(database_path('sql/sp_crud_invoice.sql')));
+           //DB::unprepared(file_get_contents(database_path('sql/sp_crud_invoice.sql')));
+          DB::unprepared(file_get_contents(database_path('sql/sp_create_invoice.sql')));
+    DB::unprepared(file_get_contents(database_path('sql/sp_update_invoice.sql')));
+    DB::unprepared(file_get_contents(database_path('sql/sp_delete_invoice.sql')));
     }
 
     /**
@@ -23,6 +26,7 @@ return new class extends Migration
     {
          DB::unprepared("
             DROP PROCEDURE IF EXISTS sp_create_invoice;
+            DROP PROCEDURE IF EXISTS sp_update_invoice;
             DROP PROCEDURE IF EXISTS sp_delete_invoice;
          ");
     }

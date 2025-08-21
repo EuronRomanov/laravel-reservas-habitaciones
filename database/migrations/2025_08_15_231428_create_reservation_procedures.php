@@ -11,7 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::unprepared(file_get_contents(database_path('sql/sp_crud_reservation.sql')));
+        //DB::unprepared(file_get_contents(database_path('sql/sp_crud_reservation.sql')));
+         DB::unprepared(file_get_contents(database_path('sql/sp_create_reservation.sql')));
+    DB::unprepared(file_get_contents(database_path('sql/sp_update_reservation.sql')));
+    DB::unprepared(file_get_contents(database_path('sql/sp_delete_reservation.sql')));
     }
 
     /**
